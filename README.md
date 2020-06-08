@@ -6,10 +6,10 @@
 
 ### Links and Resources
 
-- [Swagger](http://xyz.com)
-- [submission PR](http://xyz.com)
-- [ci/cd](http://xyz.com) (GitHub Actions)
-- [back-end server url](http://xyz.com) (when applicable)
+<!-- - [Swagger](http://xyz.com) -->
+- [submission PR](https://github.com/401-advanced-javascript-Anolla/auth-server/pull/1)
+<!-- - [ci/cd](http://xyz.com) (GitHub Actions) -->
+<!-- - [back-end server url](http://xyz.com) (when applicable) -->
 <!-- - [front-end application](http://xyz.com) (when applicable) -->
 
 ### Setup
@@ -18,20 +18,19 @@
 
 i.e.
 
-- `PORT` - Port Number
-- `MONGODB_URI` - URL to the running mongo instance/db
+- `PORT` - 3000
+<!-- - `MONGODB_URI` - URL to the running mongo instance/db -->
 
 #### How to initialize/run your application (where applicable)
 
-- e.g. `npm start`
+- `npm start`
 
 #### How to use your library (where applicable)
 
 #### Tests
 
-- How do you run tests?
-- Any tests of note?
-- Describe any tests that you did not complete, skipped, etc
+- `npm test`
+
 
 #### UML
 
