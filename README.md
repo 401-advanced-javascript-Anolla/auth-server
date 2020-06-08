@@ -1,4 +1,4 @@
-# LAB - Class 11
+# LAB - Class 12
 
 ## Project: auth-server
 
@@ -34,4 +34,4 @@ i.e.
 
 #### UML
 
-![UML](./UMLs/UMLlab11.png)
+![UML](./UMLs/UMLlab12.png)
