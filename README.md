@@ -7,7 +7,7 @@
 ### Links and Resources
 
 <!-- - [Swagger](http://xyz.com) -->
-- [submission PR](https://github.com/401-advanced-javascript-Anolla/auth-server/pull/1)
+- [submission PR](https://github.com/401-advanced-javascript-Anolla/auth-server/pull/2)
 <!-- - [ci/cd](http://xyz.com) (GitHub Actions) -->
 <!-- - [back-end server url](http://xyz.com) (when applicable) -->
 <!-- - [front-end application](http://xyz.com) (when applicable) -->
