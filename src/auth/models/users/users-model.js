@@ -3,7 +3,7 @@
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const SECRET = process.env.SECRET;
+const SECRET = process.env.SECRET || 'secret';
 
 const userSchema = require('../users/users-schema');
 const Model = require('../mongo');
@@ -35,6 +35,21 @@ class User extends Model {
     const token = jwt.sign({ username: user.username }, SECRET);
     return token;
   }
+
+//   async authenticateToken (token){
+//     try {
+//       const tokenObject = await jwt.verify(token, SECRET);
+//       // tokenObject = {username:"someone",iat:91223238}  //iat=>issued at
+//       if (db[tokenObject.username]) {
+//         return Promise.resolve(tokenObject);
+//       } else {
+//         return Promise.reject('User is not found!');
+//       }
+//     } catch (e) {
+//       return Promise.reject(e.message);
+//     }
+
+//   }
 
 }
 
