@@ -36,18 +36,18 @@ class User extends Model {
     return token;
   }
 
-//   async authenticateToken (token){
-//     try {
-//       const tokenObject = await jwt.verify(token, SECRET);
-//       // tokenObject = {username:"someone",iat:91223238}  //iat=>issued at
-//       if (db[tokenObject.username]) {
-//         return Promise.resolve(tokenObject);
-//       } else {
-//         return Promise.reject('User is not found!');
-//       }
-//     } catch (e) {
-//       return Promise.reject(e.message);
-//     }
+  //   async authenticateToken (token){
+  //     try {
+  //       const tokenObject = await jwt.verify(token, SECRET);
+  //       // tokenObject = {username:"someone",iat:91223238}  //iat=>issued at
+  //       if (this.read(tokenObject.username) {
+  //         return Promise.resolve(tokenObject);
+  //       } else {
+  //         return Promise.reject('User is not found!');
+  //       }
+  //     } catch (e) {
+  //       return Promise.reject(e.message);
+  //     }
 
 //   }
 
