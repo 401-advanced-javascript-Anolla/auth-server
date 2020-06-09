@@ -1,4 +1,4 @@
-# LAB - Class 12
+# LAB - Class 13
 
 ## Project: auth-server
 
@@ -7,7 +7,7 @@
 ### Links and Resources
 
 <!-- - [Swagger](http://xyz.com) -->
-- [submission PR](https://github.com/401-advanced-javascript-Anolla/auth-server/pull/2)
+- [submission PR](https://github.com/401-advanced-javascript-Anolla/auth-server/pull/3)
 <!-- - [ci/cd](http://xyz.com) (GitHub Actions) -->
 <!-- - [back-end server url](http://xyz.com) (when applicable) -->
 <!-- - [front-end application](http://xyz.com) (when applicable) -->
@@ -34,4 +34,4 @@ i.e.
 
 #### UML
 
-![UML](./UMLs/UMLlab12.png)
+![UML](./UMLs/UMLlab13.png)
