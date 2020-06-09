@@ -4,8 +4,9 @@ require('dotenv').config();
 
 const superagent= require('superagent');
 const users = require('../models/users/users-model');
-const tokenServerUrl = 'https://github.com/login/oauth/access_token'; //will provide the token.abs
+const tokenServerUrl = 'https://github.com/login/oauth/access_token'; //will provide the token.
 const remoteAPI = 'https://api.github.com/user';
+// const mime=require('mime-types');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -34,6 +35,7 @@ module.exports = async (req, res, next) => {
 };
 
 async function exchangeCodeForToken(code) {
+  
   const tokenResponse = await superagent.post(tokenServerUrl).send({
     code: code,
     client_id: CLIENT_ID,
@@ -42,6 +44,8 @@ async function exchangeCodeForToken(code) {
     grant_type: 'authorization_code', 
   });
   const access_token = tokenResponse.body.access_token;
+  // console.log(access_token);
+  
   return access_token;
 }
 
@@ -62,6 +66,7 @@ async function getUser(remoteUser) {
   const user = await users.save(userRecord);
   const token = users.generateToken(user);
   return [user, token];
+  
 }
 
 //these three function depends on each other (chained).
