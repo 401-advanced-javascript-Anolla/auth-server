@@ -5,7 +5,8 @@ class Model {
     this.schema = schema;
   }
   read(_id) {
-    const bjectId = _id ? { _id } : {};
+    const bjectId = _id ? _id  : {};
+    console.log(bjectId);
     return this.schema.find(bjectId);
   }
   create(record) {
