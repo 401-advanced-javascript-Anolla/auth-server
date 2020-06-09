@@ -49,7 +49,7 @@ class User extends Model {
   //       return Promise.reject(e.message);
   //     }
 
-//   }
+  //   }
 
 }
 
