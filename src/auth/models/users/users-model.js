@@ -8,6 +8,13 @@ const SECRET = process.env.SECRET || 'secret';
 const userSchema = require('../users/users-schema');
 const Model = require('../mongo');
 
+let roles = {
+  user :  ['read'],
+  writer : ['read' ,'add'],
+  editor : ['read' ,'add' , 'change'],
+  administrator :  ['read' ,'add' , 'change' , 'remove'],
+};
+
 class User extends Model {
   constructor() {
     super(userSchema);
@@ -42,7 +49,7 @@ class User extends Model {
 
   generateToken(user){
     // console.log('hello',user._id);
-    const token = jwt.sign({username: user.username ,id:user._id, exp: Math.floor(Date.now() / 1000) + (15 * 60)}, SECRET);
+    const token = jwt.sign({username: user.username ,id:user._id, exp: Math.floor(Date.now() / 1000) + (15 * 60), capabilities: roles[user.role]}, SECRET);
     return token;
   }
 
@@ -63,6 +70,15 @@ class User extends Model {
     //   } else {
     //     return Promise.reject('User is not found!');
     //   }
+  }
+
+  grantAccess(permission){
+    if(permission){
+      return Promise.resolve(true);
+    }
+    else{
+      return Promise.resolve(false);
+    }
   }
 }
 

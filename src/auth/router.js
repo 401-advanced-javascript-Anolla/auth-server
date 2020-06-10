@@ -6,11 +6,11 @@ const router = express.Router();
 const basicAuth = require('./middleware/basic');
 const oauth = require('./middleware/oauth');
 
-
 router.post('/signup', signUp);
 router.post('/signin', basicAuth, signIn);
 router.get('/users', usersHandler);
 router.get('/oauth', oauth, oauthHandler); // the same endpoint as in the api server
+
 
 function signUp (req, res)  {
   users

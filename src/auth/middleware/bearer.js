@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
     const [auth, token] = req.headers.authorization.split(' ');
     if (auth === 'Bearer') {
     // "Bearer kansdlkasndkasndslakdn" => ["Bearer","kansdlkasndkasndslakdn"]
-      users
+      return  users
         .authenticateToken(token)
         .then((validUser) => {
           req.user = validUser;
