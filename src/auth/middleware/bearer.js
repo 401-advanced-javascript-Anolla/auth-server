@@ -15,7 +15,6 @@ module.exports = (req, res, next) => {
     const [auth, token] = req.headers.authorization.split(' ');
     if (auth === 'Bearer') {
     // "Bearer kansdlkasndkasndslakdn" => ["Bearer","kansdlkasndkasndslakdn"]
-      console.log('TOKEN', token);
       users
         .authenticateToken(token)
         .then((validUser) => {

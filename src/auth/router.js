@@ -23,6 +23,7 @@ function signUp (req, res)  {
 }
 
 function signIn(req, res){
+  // console.log('sudihiudhidfhj',req.username);
   return res.json({token:req.token, user: req.username});  
 }
 
@@ -33,7 +34,6 @@ function usersHandler(req, res){
 }
 
 function oauthHandler(req, res){
-
   res.json({ token: req.token,user: req.username });
 }
 
