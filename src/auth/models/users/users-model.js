@@ -24,8 +24,8 @@ class User extends Model {
 
   }
 
-  async authenticateUser (user, pass){
-    const data = this.read({username:user}); 
+  async authenticateBasic (user, pass){
+    const data = await this.read({username:user}); 
     // console.log(data);
     const valid = await bcryptjs.compare(pass, data[0].password);
     return valid ? data : Promise.reject('Wrong Password');

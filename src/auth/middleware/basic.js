@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     // console.log('basic', basic);
     const [user, pass] = base64.decode(basic).split(':'); // "username:1234"
     // console.log('__BasicAuth__', user, pass);
-    users
+    return users
       .authenticateBasic(user, pass)
       .then((validUser) => {
         req.token = users.generateToken(validUser);
