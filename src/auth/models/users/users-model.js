@@ -48,7 +48,7 @@ class User extends Model {
 
   authenticateToken (token){
     const tokenObject = jwt.verify(token, SECRET);
-    return this.read({_id:tokenObject._id}).then((data)=>{    
+    return this.read({_id:tokenObject.id}).then((data)=>{    
       // console.log('after read', data );
       if(data.length===0){
         return Promise.reject('ID not found');
@@ -66,4 +66,4 @@ class User extends Model {
   }
 }
 
-module.exports = new User;
+module.exports = new User(userSchema);
