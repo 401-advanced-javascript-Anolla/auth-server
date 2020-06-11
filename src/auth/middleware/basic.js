@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     .authenticateUser(user, pass)
     .then((validUser) => {
       req.token = users.generateToken(validUser);
-      // console.log('anthing',user,pass);
+      req.username=validUser[0].username;
       next();
     })
     .catch((err) => next(err));
