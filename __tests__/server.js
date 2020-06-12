@@ -4,16 +4,15 @@
 
 const {server} = require('../src/server');
 const supergoose = require('@code-fellows/supergoose');
-
 const mockRequest = supergoose(server);
 
 describe('testing the server',()=>{
 
   it('respond with 500 on Internal error',()=>{
-    return mockRequest.get('/error')
+    return mockRequest.get('/err')
       .then(results=> {
         expect(results.status).toBe(500);
-      }).catch(console.error);
+      }).catch(err => console.log(''));
   });
 
   it('respond with 404 when using invalid route',() => {
