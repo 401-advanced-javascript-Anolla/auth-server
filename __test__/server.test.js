@@ -30,17 +30,18 @@ describe('testing the server',()=>{
       });
   });
 
-  it('POST  /signup ',() => {
+  it('POST  /signup ', async() => {
     let test = { 
-      'username': 'anyname',
+      'username': 'a name',
       'password':'0000',
     };
     return  mockRequest
       .post('/signup')
       .send(test)
-      .then(data => {
-        expect(data.status).toBe(200);
+      .then(results => {
+        expect(results.status).toBe(200);
       });
   });
+
 
 });
