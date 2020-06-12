@@ -42,7 +42,7 @@ class User extends Model {
 
   generateToken(user){
     // console.log('hello',user._id);
-    const token = jwt.sign({username: user.username ,id:user._id, exp: Math.floor(Date.now() / 1000) + (15 * 60)}, SECRET);
+    const token = jwt.sign({username: user[0].username ,id:user[0]._id, exp: Math.floor(Date.now() / 1000) + (15 * 60)}, SECRET);
     return token;
   }
 
