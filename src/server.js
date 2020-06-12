@@ -11,7 +11,7 @@ app.use(express.json()); //body-parser to add body to the req\
 
 
 
-app.use( router);
+app.use(router);
 
 app.use('*',notFoundHandler);
 app.use(errorHandler);
