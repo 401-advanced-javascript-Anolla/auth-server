@@ -10,9 +10,9 @@ const Model = require('../mongo');
 
 let roles = {
   user :  ['read'],
-  writer : ['read' ,'add'],
-  editor : ['read' ,'add' , 'change'],
-  administrator :  ['read' ,'add' , 'change' , 'remove'],
+  writer : ['read' ,'create'],
+  editor : ['read' ,'create' , 'update'],
+  administrator :  ['read' ,'create' , 'update' , 'delete'],
 };
 
 class User extends Model {
@@ -48,8 +48,8 @@ class User extends Model {
   }
 
   generateToken(user){
-    // console.log('hello',user._id);
-    const token = jwt.sign({username: user[0].username ,id:user[0]._id, exp: Math.floor(Date.now() / 1000) + (15 * 60), capabilities: roles[user.role]}, SECRET);
+    // console.log('-----------------',user.username);
+    const token = jwt.sign({username: user.username ,id:user._id, exp: Math.floor(Date.now() / 1000) + (15 * 60), capabilities: roles[user.role]}, SECRET);
     return token;
   }
 
