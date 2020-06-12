@@ -32,7 +32,7 @@ class User extends Model {
   }
 
   generateToken(user){
-    const token = jwt.sign({ username: user[0].username}, SECRET);
+    const token = jwt.sign({ username: user.username}, SECRET);
     return token;
   }
 
