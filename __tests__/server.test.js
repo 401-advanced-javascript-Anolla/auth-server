@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const {server} = require('../src/server');
 const supergoose = require('@code-fellows/supergoose');
 const mockRequest = supergoose(server);
