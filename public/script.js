@@ -5,10 +5,10 @@ const URL = 'https://github.com/login/oauth/authorize';
 // needed query string
 
 const options = {
-    client_id: 'f9f8388d65e79b318fd3', //required!!
-    scope: 'read:user',
-    state: 'class-12',
-  };
+  client_id: 'f9f8388d65e79b318fd3', //required!!
+  scope: 'read:user',
+  state: 'class-12',
+};
 
 // converting the obj to string and formatting the resulting string
 const queryString = Object.keys(options)
