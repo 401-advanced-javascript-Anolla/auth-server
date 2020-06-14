@@ -16,10 +16,11 @@
 
 #### `.env` requirements (where applicable)
 
-i.e.
-
 - `PORT` - 3000
-<!-- - `MONGODB_URI` - URL to the running mongo instance/db -->
+- `MONGODB_URI` - mongodb://localhost:27017/oauthserver
+- `CLIENT_ID` - f9f8388d65e79b318fd3
+- `CLIENT_SECRET` - 89626007bdafb7a93ac2f2975898f9f0f2783fbf
+- `API_SERVER` - http://localhost:3000/oauth
 
 #### How to initialize/run your application (where applicable)
 
@@ -31,7 +32,6 @@ i.e.
 
 - `npm test`
 
-
 #### UML
 
-![UML](./UMLs/UMLlab14.png)
+![UML](./UMLs/UMLlab13.png)
