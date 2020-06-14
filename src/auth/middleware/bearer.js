@@ -11,20 +11,24 @@ module.exports = (req, res, next) => {
   // do we have the authorization headers or not?
   if (!req.headers.authorization) {
     next('Invalid Login no auth headers');
+    return;
   } else {
     const [auth, token] = req.headers.authorization.split(' ');
     if (auth === 'Bearer') {
     // "Bearer kansdlkasndkasndslakdn" => ["Bearer","kansdlkasndkasndslakdn"]
       return  users
         .authenticateToken(token)
-        .then((validUser) => {
+        .then((records) => {
+          console.log('bearer********',records);
+          const validUser = records[0];
           req.user = {
-            username : validUser.username,
-            capabilities : validUser.capabilities,
+            username: validUser.username,
+            acl: validUser.acl,
           };
+          req.token = token;
           next();
         })
-        .catch((e) => next('Invalid login', e.message));
+        .catch((e) => next('Invalid Bearer login ', e.message));
     } else {
       next('Invalid auth header');
     }

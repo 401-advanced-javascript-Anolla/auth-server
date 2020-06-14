@@ -14,17 +14,25 @@ router.get('/oauth', oauth, oauthHandler); // the same endpoint as in the api se
 
 function signUp (req, res)  {
   users
-    .save(req.body)
+    .create(req.body)
     .then((data) => {
-      const token = users.generateToken(data);
-      res.json({ token }); // => {token:aklndkalsndalksnd}
+      req.token = users.generateToken(data);
+      req.user = {
+        username: data.username,
+        acl: data.acl,
+      };
+      res.cookie('auth', req.token);
+      res.set('auth', req.token);
+      res.json({user: req.user, token: req.token});      // => {token:aklndkalsndalksnd}
     })
     .catch((err) => res.status(403).send(err.message));
 }
 
 function signIn(req, res){
-  // console.log('sudihiudhidfhj',req.username);
-  return res.json({token:req.token, user: req.username});  
+  console.log('siiiiiggggnnnn iiiinnnn');
+  res.cookie('auth', req.token);
+  res.set('auth', req.token);
+  return res.json({user: req.username, token:req.token});    
 }
 
 function usersHandler(req, res){
@@ -34,7 +42,7 @@ function usersHandler(req, res){
 }
 
 function oauthHandler(req, res){
-  res.json({ token: req.token,user: req.username });
+  res.json({ token: req.token});
 }
 
 module.exports = router;

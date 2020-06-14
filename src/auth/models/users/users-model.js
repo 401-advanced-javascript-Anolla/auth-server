@@ -8,39 +8,35 @@ const SECRET = process.env.SECRET || 'secret';
 const userSchema = require('../users/users-schema');
 const Model = require('../mongo');
 
-let roles = {
-  user :  ['read'],
-  writer : ['read' ,'create'],
-  editor : ['read' ,'create' , 'update'],
-  administrator :  ['read' ,'create' , 'update' , 'delete'],
-};
+// let roles = {
+//   user :  ['read'],
+//   writer : ['read' ,'create'],
+//   editor : ['read' ,'create' , 'update'],
+//   administrator :  ['read' ,'create' , 'update' , 'delete'],
+// };
 
 class User extends Model {
   constructor() {
     super(userSchema);
   }
 
-  async save(record){
-    let data = await this.read({username:record.username});
-    if(!data.length){
-      record.password = await bcryptjs.hash(record.password, 3);
-      let userSaved = await this.create(record);
-      return userSaved;
-    }
-    return 'This username already exists';
-
-  }
-
-  // async authenticateUser (user, pass){
-  //   console.log('---------------------',data);
-  //   const data = await this.read({username:user}); 
-  //   const valid = await bcryptjs.compare(pass, data[0].password);
-  //   return valid ? data : Promise.reject('Wrong Password');
+  // async save(record){
+  //   return this.read({ username: record.username }).then((result) => {
+  //     if (!result.length) {
+  //       return bcryptjs.hash(record.password, 5).then((hash) => {
+  //         record.password = hash;
+  //       });
+  //     } else {
+  //       console.log('username already exists');
+  //     }
+  //   });
   // }
+
 
   authenticateUser (user, pass){
     // console.log('---------------------',user,pass);
     return this.read({username:user}).then((data)=>{
+      // console.log('---------------------',data);
       return bcryptjs.compare(pass, data[0].password).then((isValid)=>{  
         return isValid ? data : Promise.reject('Wrong Password');
       });
@@ -48,38 +44,24 @@ class User extends Model {
   }
 
   generateToken(user){
-    // console.log('-----------------',user.username);
-    const token = jwt.sign({username: user.username ,id:user._id, exp: Math.floor(Date.now() / 1000) + (15 * 60), capabilities: roles[user.role]}, SECRET);
+    // console.log('-----------------',user.acl);
+    const token = jwt.sign({username: user.username ,id:user._id, exp: Math.floor(Date.now() / 1000) + (15 * 60),capabilities:user.acl ? user.acl.capabilities : [],type: user.type || 'user'}, SECRET);
     return token;
   }
 
   authenticateToken (token){
-    const tokenObject = jwt.verify(token, SECRET);
-    return this.read({_id:tokenObject.id}).then((data)=>{    
-      // console.log('after read', data );
-      if(data.length===0){
-        return Promise.reject('ID not found');
-      }
-      else{
-        return Promise.resolve(data[0]);
-      }
-    });
-    //   // tokenObject = {username:"someone",iat:91223238}  //iat=>issued at
-    //   if (this.read(tokenObject.username) {
-    //     return Promise.resolve(tokenObject);
-    //   } else {
-    //     return Promise.reject('User is not found!');
-    //   }
+    try {
+      let tokenObject = jwt.verify(token, SECRET);
+      console.log(tokenObject._id);
+      return this.read({ _id: tokenObject.id });
+    } catch (e) {
+      throw new Error('Invalid Token');
+    }
   }
 
-  grantAccess(permission){
-    if(permission){
-      return Promise.resolve(true);
-    }
-    else{
-      return Promise.resolve(false);
-    }
+  can(user, capability) {
+    return user.acl.capabilities.includes(capability);
   }
 }
 
-module.exports = new User(userSchema);
+module.exports = new User();

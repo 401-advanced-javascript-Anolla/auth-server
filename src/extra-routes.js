@@ -3,7 +3,7 @@
 const bearerMiddleware = require('../src/auth/middleware/bearer');
 const permissions =require('./auth/middleware/acl');
 const router = require('./auth/router');
-const users = require('./auth/models/users/users-model');
+// const users = require('./auth/models/users/users-model');
 
 router.get('/secret', bearerMiddleware, (req,res) => {
   res.json(req.user);

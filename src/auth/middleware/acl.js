@@ -10,14 +10,14 @@ module.exports = (capability) => {
     // req.user.capabilities = Array
     // ['read'] || ['read', 'create', 'update'] || ['read', 'create', 'update', 'delete']
     try {
-      console.log(req.user);
-      if (req.user.capabilities.includes(capability)) {
+      console.log('aaaaccccllll',req.user);
+      if (req.user.acl.capabilities.includes(capability)) {
         next();
       } else {
         next('Access Denied!!');
       }
     } catch (e) {
-      next('Invalid Login');
+      next('Invalid acl Login');
     }
   };
 };
